@@ -1,0 +1,45 @@
+.dialogs{
+  display: grid;
+  grid-template-columns:2fr 10fr;
+}
+
+.dialogsItems{
+  padding: 10px;
+}
+
+.dialog{
+  display:table-row;
+  vertical-align: middle;
+}
+
+.dialog a{
+  vertical-align: middle;
+  display:table-cell;
+  padding: 0 5px;
+}
+
+.dialog img{
+  width:50px;
+  height:50px;
+  border-radius: 50%;
+}
+
+.messages{
+  padding:10px;
+}
+
+.dialogsItems a{
+  color:white
+}
+
+.dialogsItems a.active{
+  color:gold
+}
+
+.messageLeft{
+  text-align: left;
+}
+
+.messageRight{
+  text-align: right;
+}
