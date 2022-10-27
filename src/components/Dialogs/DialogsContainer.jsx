@@ -1,28 +1,31 @@
 import React, { useRef } from 'react';
-import c from './Dialogs.module.css';
-import { NavLink } from 'react-router-dom';
 import Dialogs from './Dialogs';
-import Message from './Message/Message';
 import { sendMessageActionCreator, updateNewMessageTextActionCreator } from '../../redux/dialogs-reducer';
+import StoreContext from '../../StoreContext';
 
 
-const DialogsContainer = (props) => {
+const  DialogsContainer = () => {
   //debugger;
-  let state = props.store.getState();
+  //
 
-  let onSendMessageClick = () => { 
-    props.store.dispatch(sendMessageActionCreator());
-  }
+  return (
+    <StoreContext.Consumer>{
+      (store) => {
+        let state = store.getState();
+        let onSendMessageClick = () => {
+          store.dispatch(sendMessageActionCreator());
+        }
 
-  let onUdateNewMessageText = (text) => {
-    props.store.dispatch(updateNewMessageTextActionCreator(text));
-  }
-
-  return (<Dialogs updateNewMessageText={onUdateNewMessageText} 
-                   sendMessage={onSendMessageClick} 
-                   dialogsData={state.dialogsReducer.dialogsData}
-                   messagesData={state.dialogsReducer.messagesData}
-                   newMessageText={state.dialogsReducer.newMessageText}/>);
+        let onUdateNewMessageText = (text) => {
+          store.dispatch(updateNewMessageTextActionCreator(text));
+        }
+        return <Dialogs updateNewMessageText={onUdateNewMessageText}
+          sendMessage={onSendMessageClick}
+          dialogsData={state.dialogsReducer.dialogsData}
+          messagesData={state.dialogsReducer.messagesData}
+          newMessageText={state.dialogsReducer.newMessageText} />
+      }}
+    </StoreContext.Consumer>)
 }
 
 export default DialogsContainer;
