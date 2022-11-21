@@ -7,9 +7,11 @@ import DialogsContainer from './components/Dialogs/DialogsContainer';
 import News from './components/News/News';
 import Music from './components/Music/Music';
 import Settings from './components/Settings/Settings';
+import Users from './components/Users/Users';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 //import { addPost, sendMessage } from './redux/store';
 import store from './redux/redux-store';
+import UsersContainer from './components/Users/UsersContainer';
 
 
 const App = (props) => {
@@ -28,9 +30,8 @@ const App = (props) => {
             <Route path='/profile' element={<Profile
               />}/>
 
-            <Route path='/dialogs/*' element={<DialogsContainer 
-
-              />} />
+            <Route path='/dialogs/*' element={<DialogsContainer/>} />
+            <Route path='/users/' element={<UsersContainer/>} />
             <Route path='/news' element={<News />} />
             <Route path='/music' element={<Music />} />
             <Route path='/settings' element={<Settings />} />
