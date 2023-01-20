@@ -1,31 +1,36 @@
-import axios from 'axios';
 import React from 'react';
-import styles from './Users.module.css';
+import c from './Users.module.css';
 import userAva from '../../assets/images/userAva.png';
+import { NavLink } from 'react-router-dom';
 
-class Users extends React.Component {
-    constructor(props){
-        super(props);
-        //if (this.props.users.length === 0) {
-            axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response => {
-                //debugger;
-                this.props.setUsers(response.data.items);
-            });
-        //}
+let Users = (props) => {
+    //debugger
+    let pagesCount = Math.ceil(props.totalUsersCount / props.pageSize);
+    let pages = [];
+
+    for (let i = 1; i <= pagesCount; i++) {
+        pages.push(i);
     }
-    
-    render(){
-        return <div>
+    return <div>
+        <div>
+            {pages.map(p => {
+                return <span onClick={(e) => { props.onPageChanged(p) }} className={(p === props.currentPage) && c.selectedPage}>{p}</span>
+            })}
+        </div>
         {
-            this.props.users.map(u => <div key={u.id}>
+            props.users.map(u => <div key={u.id}>
                 <span>
                     <div>
-                        <img src={(u.photos.small != null) ? u.photos.small : userAva} className={styles.userPhoto} />
+                        <NavLink to={'/profile/' + u.id}>
+                            <img src={(u.photos.small != null) ? u.photos.small : userAva} className={c.userPhoto} />
+                        </NavLink>
                     </div>
                     <div>
                         {u.followed ?
-                            <button onClick={() => { this.props.unfollow(u.id) }}>Unfollow</button> :
-                            <button onClick={() => { this.props.follow(u.id) }}>Follow</button>
+                            <button disabled={props.followingInProgress.some(id=> id===u.id)} 
+                            onClick={() => {props.unfollow(u.id)}}>Unfollow</button> :
+                            <button disabled={props.followingInProgress.some(id=> id===u.id)} 
+                            onClick={() => {props.follow(u.id)}}>Follow</button>
                         }
 
                     </div>
@@ -43,7 +48,6 @@ class Users extends React.Component {
             </div>)
         }
     </div>
-    }
 }
 
 export default Users;

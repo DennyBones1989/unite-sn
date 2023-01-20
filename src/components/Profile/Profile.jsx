@@ -1,5 +1,3 @@
-import MyPosts from './MyPosts/MyPosts';
-import c from './Profile.module.css';
 import ProfileInfo from './MyPosts/ProfileInfo/ProfileInfo';
 import MyPostsContainer from './MyPosts/MyPostsContainer';
 
@@ -7,7 +5,7 @@ import MyPostsContainer from './MyPosts/MyPostsContainer';
 const Profile = (props) => {
   //debugger;
   return <div>
-    <ProfileInfo />
+    <ProfileInfo profile={props.profile}/>
     <MyPostsContainer/>
   </div>
 }
