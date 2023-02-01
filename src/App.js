@@ -12,6 +12,7 @@ import store from './redux/redux-store';
 import UsersContainer from './components/Users/UsersContainer';
 import ProfileContainer from './components/Profile/ProfileContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
+import Login from './components/Login/Login';
 
 
 const App = (props) => {
@@ -36,7 +37,7 @@ const App = (props) => {
             <Route path='/news' element={<News />} />
             <Route path='/music' element={<Music />} />
             <Route path='/settings' element={<Settings />} />
-            <Route path='/login' element={<Settings />} />
+            <Route path='/login' element={<Login />} />
           </Routes>
 
         </div>
