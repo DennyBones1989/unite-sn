@@ -1,5 +1,6 @@
 import Preloader from '../../../Common/Preloader/Preloader';
 import c from './ProfileInfo.module.css';
+import ProfileStatus from './ProfileStatus'
 
 const ProfileInfo = (props) => {
   if (!props.profile) {
@@ -8,14 +9,15 @@ const ProfileInfo = (props) => {
 
   let contactsInfo = props.profile.contacts;
   return <div>
-    <div>
+    {/*<div>
       <img src="https://img.freepik.com/free-photo/beautiful-tropical-beach-sea_74190-6796.jpg" />
-    </div>
+</div>*/}
     <div className={c.descriptionBlock}>
       <div className={c.avaHolder}>
         <img src={(props.profile != null) ? props.profile.photos.large : ''} />
       </div>
       <div className={c.fullNameHolder}>{props.profile.fullName}</div>
+      <ProfileStatus status={props.status} updateStatus={props.updateStatus}/>
       <div className={c.aboutMeHolder}>{props.profile.aboutMe}</div>
       <div>{
         (props.profile.lookingForAJob === true) ? 'Looking for some new opportunities' : 'Currently occupied'
